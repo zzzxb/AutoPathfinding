@@ -1,0 +1,33 @@
+body {
+  background-color: black;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.bt {
+  outline: none;
+  font-size: 30px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  /* transition: color 0.3s, border 0.3s ease-out; */
+  /* -webkit-transition: color 0.3s, border 0.3s ease-out; */
+}
+
+.bt:active {
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+}
+
+.bt_group {
+  margin: 0.5em auto;
+  /* border: 1px solid red; */
+}
+
+.box {
+  background-color: rgba(210, 222, 252, 1);
+  margin: 0.5em auto;
+  /* border: 1px solid red; */
+}
