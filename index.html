@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+  <title>自动寻路</title>
+  <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+</head>
+<style>
+  body {
+    background-color: black;
+  }
+  .container {
+    margin: 2% auto;
+  }
+  button {
+    outline: none;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+  button:hover {
+    border: 1px solid red;
+    color: red;
+    transition: color 1s, border 0.5s;
+    -webkit-transition: color 1s, border 0.5s;
+  }
+  .box {
+    width: 512px;
+    height: 512px;
+    background-color: white;
+    margin: 0 auto;
+  }
+</style>
+<body>
+  <div class="container">
+    <!-- <button onclick="algo()">开始</button> -->
+    <div class="box">
+    <canvas id="demoArea" width="512" height="512"> 
+      <p>你的浏览器不支持 canvas，请升级你的浏览器。</p>
+      <img decoding="async" src="./favicon.png">
+    </canvas>
+    </div>
+  </div>
+</body>
+<script src="./main.js"></script>
+</html>
