@@ -1,3 +1,10 @@
+* {
+  user-select: none; /* 兼容大多数浏览器 */
+  -webkit-user-select: none; /* 针对Webkit浏览器 */
+  -moz-user-select: none; /* 针对Firefox浏览器 */
+  -ms-user-select: none; /* 针对IE浏览器 */
+}
+
 body {
   background-color: black;
 }
