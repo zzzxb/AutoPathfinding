@@ -5,6 +5,7 @@ class Position {
     this.color = color == undefined ? 'rgba(0, 0, 0, 1)' : color;
   }
 
+  setColor(color) { this.color = color; }
   xlt(position) { return this.x < position.x; }
   xgt(position) { return this.x > position.x; }
   ylt(position) { return this.y < position.y; }
