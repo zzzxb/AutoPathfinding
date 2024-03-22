@@ -14,7 +14,7 @@ function initTags() {
   box.style.height = canvasSize + "px";
   btGroup.style.width = canvasSize + "px";
   for(let i = 0; i < btList.length; i++) {
-    btList[i].style.width = (blockSize * 5.15) + "px";
+    btList[i].style.width = (blockSize * 5.08) + "px";
     btList[i].style.height = (blockSize * 1.55) + "px";
   }
 }
@@ -69,6 +69,7 @@ function algo(num) {
       case 1: gen_path_astar(); break;
       case 2: break;
     }
+    drawBlocks(pathArr);
   }
 }
 
@@ -89,48 +90,75 @@ function clearCover() {
 }
 
 function drawBeginEndPoiont(begin, end) {
-  beginPoint = begin != undefined ? begin : randomPosition(null, 'black');
-  endPoint = end != undefined ? end : randomPosition(null, 'red');
+  beginPoint = (begin != undefined ? begin : randomPosition(null, 'black'));
+  endPoint = (end != undefined ? end : randomPosition(beginPoint, 'red'));
   drawSE(beginPoint, endPoint);
 }
 
 function randomPosition(exclusionPostiotion, color) {
   let position;
   do{
-    var x = Math.floor(Math.random() * blockNum);
-    var y = Math.floor(Math.random() * blockNum);
-    if (exclusionPostiotion == undefined) {
-      position = new Position(x, y, color);
-      break;
-    }
+    let x = Math.floor(Math.random() * blockNum);
+    let y = Math.floor(Math.random() * blockNum);
+    position = new Position(x, y, color);
+
+    if (exclusionPostiotion == undefined) break;
   }while(exclusionPostiotion.eq(position));
   return position;
 }
 
 function drawSE(begin, end) {
   drawBlock(begin);
-  ctx.globalCompositeOperation = "destination-over";
   drawBlock(end);
 }
 
+function drawBlocks(positionList, drawEnd) {
+  if (positionList != undefined && positionList.length != 0)
+    positionList.forEach( position => {
+      if (!drawEnd && position.eq(endPoint)) return;
+      drawBlock(position)
+  });
+}
+
+function drawBlockDelay() {
+
+}
+
 function drawBlock(position) {
+  position.width = (position.width == undefined ? blockSize : position.width);
+  position.height = (position.height == undefined ? blockSize : position.height);
+
+  let rate = 1 - (position.width / blockAnimationInrc) / 100;
+  console.log(rate);
+  if(position.width < blockSize) {
+    position.width = Math.min(position.width +  rate, blockSize);
+  } else if (position.width > blockSize) {
+    position.width = Math.max(position.width - blockAnimationInrc, blockSize);
+  } 
+  if (position.height < blockSize) {
+    position.height = Math.min(position.height + rate, blockSize);
+  }else if (position.height > blockSize) {
+    position.height = Math.max(position.height - blockAnimationInrc, blockSize);
+  }
   ctx.fillStyle = position.color;
-  ctx.fillRect(position.x * blockSize, position.y * blockSize, blockSize, blockSize);
+  let drawX = (position.x * blockSize) + (position.width == blockSize ? 0 : (blockSize - position.width) / 2);
+  let drawY = (position.y * blockSize) + (position.height == blockSize ? 0 : (blockSize - position.height) / 2)
+  ctx.fillRect(drawX, drawY, position.width, position.height);
+
+  if (position.width != blockSize || position.height != blockSize) {
+   requestAnimationFrame(() => drawBlock(position))
+  }
 }
 
 function drawCoverArr(ca) {
   if (ca != undefined && ca.length != 0) {
     coverList = ca;
   }
-  coverList.forEach(cover => drawBlock(cover));
+    drawBlocks(coverList, true);
 }
 
 function drawCover(event) {
-  let now = new Date().getTime();
-  if (now - dblClickTime < 300) {
-    e.preventDefault();
-  }
-  dblClickTime = now;
+  noDoubleTouch(event);
 
   if (pathArr.length != 0) {
     return;
@@ -173,4 +201,12 @@ function alarmInfo() {
   }else if (endPoint == undefined) {
     alert("请点击画布创建终点(红色)或点击Reset按钮");
   }
+}
+
+function noDoubleTouch(event) {
+  let now = new Date().getTime();
+  if (now - dblClickTime < 300) {
+    event.preventDefault();
+  }
+  dblClickTime = now;
 }

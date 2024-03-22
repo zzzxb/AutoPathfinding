@@ -4,6 +4,7 @@ const box = document.getElementById('box');
 const btGroup = document.getElementById("bt_group");
 const btList = document.getElementsByClassName("bt");
 
+let blockAnimationInrc = 0.8;
 let dblClickTime = 0;
 let screenScale = 0;
 let viewWidth = 0, viewHeight = 0;
@@ -20,7 +21,8 @@ function initProperty() {
   viewHeight = window.innerHeight;
   canvasSize = isPhone() ? initCanvasSize() : Math.max(initCanvasSize(), 512);
   blockSize = initBlockSize();
-  blockNum = canvasSize / blockSize 
+  blockNum = canvasSize / blockSize;
+  blockAnimationInrc = blockSize / 10;
 }
 
 function initCanvasSize() {
