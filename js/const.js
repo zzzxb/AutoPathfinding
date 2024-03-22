@@ -11,9 +11,22 @@ let viewWidth = 0, viewHeight = 0;
 let canvasSize = 0, blockSize = 0, blockNum = 0;
 let canvasSizeMin = 256;
 let beginPoint = 0, endPoint = 0;
+let nowAlgo = 0;
 let coverList = [];
 let pathArr = [];
-let nowAlgo = 0;
+let enableAnimation = true;
+let enableDrawGrid = true;
+let delayTimePath = 0.1;
+
+// 颜色相关
+let beginPointColor = "rgba(255, 0, 0, 1)";
+let endPointColor = "rgba(144, 101, 197, 1)";
+let coverPointColor = "rgba(186, 85, 52, 1)";
+let pathPointColor = 'rgba(64, 196, 99, 0.9)';
+let rainbowPath = true;
+let rainbowSpacingR = 0;
+let rainbowSpacingG = 0;
+let rainbowSpacingB = 0;
 
 function initProperty() {
   screenScale = window.devicePixelRatio;
