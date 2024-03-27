@@ -19,7 +19,7 @@ body {
   background-color: black;
   color: white;
   border: 1px solid white;
-  margin: 4px auto;
+  margin: 2px auto;
   /* transition: color 0.3s, border 0.3s ease-out; */
   /* -webkit-transition: color 0.3s, border 0.3s ease-out; */
 }
@@ -30,12 +30,12 @@ body {
 }
 
 .bt_group {
-  margin: 0.5em auto;
+  margin: 0.2em auto;
   /* border: 1px solid red; */
 }
 
 .box {
   background-color: rgba(210, 222, 252, 1);
-  margin: 0.5em auto;
+  margin: 0.2em auto;
   /* border: 1px solid red; */
 }
