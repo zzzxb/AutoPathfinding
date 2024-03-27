@@ -74,8 +74,10 @@ function algo(num) {
     clearPath();
     drawCoverArr();
     switch(num) {
-      case 1: gen_path_astar(); break;
-      case 2: break;
+      case 1: gen_path_custom(); break;
+      case 2: gen_path_astar(); break;
+      case 3: break;
+      case 4: break;
     }
     genRainbowSpacing();
     drawBlocks(pathArr);
