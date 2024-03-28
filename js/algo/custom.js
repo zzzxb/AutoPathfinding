@@ -2,20 +2,21 @@
 function gen_path_custom() {
   let b = beginPoint;
 
+  let nextInvok = 0;
   let count = 0;
   do {
     let position;
-    if ((b.xlt(endPoint) && count == 0) || count == 1) {
-      count = 2;
+    if ((b.xlt(endPoint) && nextInvok == 0) || nextInvok == 1) {
+      nextInvok = 2;
       position = new Position(b.x + 1, b.y, pathPointColor);
-    } else if ((b.xgt(endPoint) && count == 0) || count == 2) {
-      count = 3;
+    } else if ((b.xgt(endPoint) && nextInvok == 0) || nextInvok == 2) {
+      nextInvok = 3;
       position = new Position(b.x - 1, b.y, pathPointColor);
-    } else if ((b.ylt(endPoint) && count == 0) || count == 3) {
-      count = 4;
+    } else if ((b.ylt(endPoint) && nextInvok == 0) || nextInvok == 3) {
+      nextInvok = 4;
       position = new Position(b.x, b.y + 1, pathPointColor);
-    } else if ((b.ygt(endPoint) && count == 0) || count == 4) {
-      count = 1;
+    } else if ((b.ygt(endPoint) && nextInvok == 0) || nextInvok == 4) {
+      nextInvok = 1;
       position = new Position(b.x, b.y - 1, pathPointColor);
     }
 
@@ -23,8 +24,14 @@ function gen_path_custom() {
       continue;
     }
 
+    count += 1;
+    if(count == 1024) {
+      return;
+    }
+
+    console.log(nextInvok == 2 ? "右" : (nextInvok == 3) ? "左" : (nextInvok == 4 ? "下" : "上"));
     pathArr.push(b=position);
-    count = 0;
+    nextInvok = 0;
   } while(!b.eq(endPoint));
 }
 
