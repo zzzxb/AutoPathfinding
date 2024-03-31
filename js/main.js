@@ -186,7 +186,7 @@ function genRainbowColor(color, i) {
     let g = beginColorSplit[1] - (rainbowSpacingG * (i + 1));
     let b = beginColorSplit[2] - (rainbowSpacingB * (i + 1));
     // 调整透明度后出现的效果是因为方块放大动画中色块叠加产生的
-    return `rgba(${r}, ${g}, ${b}, ${enableAnimation ? 0.1 : 0.5})`;
+    return `rgba(${r}, ${g}, ${b}, ${enableAnimation ? 1 : 0.8})`;
   } 
 
   return color;

@@ -16,7 +16,7 @@ let coverList = [];
 let pathArr = [];
 let enableAnimation = true;
 let enableDrawGrid = true;
-let delayTimePath = 0.1;
+let delayTimePath = 1;
 
 // 颜色相关
 let beginPointColor = "rgba(255, 0, 0, 1)";
